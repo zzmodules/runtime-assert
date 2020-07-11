@@ -53,9 +53,12 @@ fn onabort() {
 }
 
 fn main() -> int {
+  set_abort_callback(onabort);
+
   assert(false);
   assert(false);
   assert(false);
+
   log::info("fails = %lu", aborts); // 3
   return 0;
 }
