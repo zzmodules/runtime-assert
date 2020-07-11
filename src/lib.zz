@@ -13,7 +13,9 @@ export fn assert(
   char* callsite_source<file>      unsafe file,
   char* callsite_source<function>  unsafe scope,
   usize callsite_source<line>      line,
-) {
+)
+  model true == assertion || false == assertion
+{
   if !assertion {
     new+4096 mut assertion_error = err::make();
     new+4096 mut abort_error = err::make();
