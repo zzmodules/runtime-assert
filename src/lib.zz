@@ -26,5 +26,7 @@ export fn assert(
       abort_error.trace.pop();
       log::error("%s", abort_error.trace.cstr());
     }
+  } else {
+    static_attest(true == assertion);
   }
 }
