@@ -1,0 +1,12 @@
+using runtime_assert::{ assert }
+
+test {
+  stdin = ""
+  stdout = ""
+  exit = 0
+}
+
+fn main() -> int {
+  assert(true);
+  return 0;
+}

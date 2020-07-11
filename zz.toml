@@ -1,0 +1,18 @@
+[project]
+version = "0.1.0"
+name = "runtime-assert"
+cincludes = []
+cobjects = []
+pkgconfig = []
+cflags = []
+lflags = []
+
+[variants]
+default = []
+
+[dependencies]
+abort_signal = "*"
+err = "*"
+
+[repos]
+abort_signal = "git://github.com/zzmodules/abort-signal"

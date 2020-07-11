@@ -1,0 +1,24 @@
+using abort_signal::{ set_abort_callback }
+using runtime_assert::{ assert }
+
+test {
+  stdin = ""
+  stdout = ""
+  exit = 4
+}
+
+thread_local usize mut fails = 0;
+
+fn onabort() {
+  fails++;
+}
+
+fn main() -> int {
+  set_abort_callback(onabort);
+
+  assert(false);
+  assert(false);
+  assert(false);
+  assert(false);
+  return as<int>(fails);
+}

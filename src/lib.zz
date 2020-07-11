@@ -1,0 +1,30 @@
+using <stdio.h>::{ stderr }
+
+using abort_signal::{ abort }
+using err
+using log
+
+/**
+ * Makes a runtime assertion. Upon failure, this function will
+ * call `abort_signal::abort()`
+ */
+export fn assert(
+  bool assertion,
+  char* callsite_source<file>      unsafe file,
+  char* callsite_source<function>  unsafe scope,
+  usize callsite_source<line>      line,
+) {
+  if !assertion {
+    new+4096 mut assertion_error = err::make();
+    new+4096 mut abort_error = err::make();
+
+    assertion_error.backtrace(file, scope, line);
+    assertion_error.trace.pop();
+    log::error("%s", assertion_error.trace.cstr());
+
+    if !abort(&abort_error) {
+      abort_error.trace.pop();
+      log::error("%s", abort_error.trace.cstr());
+    }
+  }
+}
