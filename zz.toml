@@ -12,6 +12,7 @@ default = []
 
 [dependencies]
 abort_signal = "*"
+buffer = "*"
 err = "*"
 
 [repos]

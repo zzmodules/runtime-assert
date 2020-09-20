@@ -1,6 +1,7 @@
 using <stdio.h>::{ stderr }
 
 using abort_signal::{ abort }
+using buffer
 using err
 using log
 
@@ -12,7 +13,7 @@ export fn assert(
   bool assertion,
   char* callsite_source<file>      unsafe file,
   char* callsite_source<function>  unsafe scope,
-  usize callsite_source<line>      line,
+  usize callsite_source<line>      line
 )
   model true == assertion || false == assertion
 {
@@ -21,10 +22,12 @@ export fn assert(
     new+4096 mut abort_error = err::make();
 
     assertion_error.backtrace(file, scope, line);
+    static_attest(buffer::integrity(&assertion_error.trace));
     assertion_error.trace.pop();
     log::error("%s", assertion_error.trace.cstr());
 
     if !abort(&abort_error) {
+      static_attest(buffer::integrity(&abort_error.trace));
       abort_error.trace.pop();
       log::error("%s", abort_error.trace.cstr());
     }

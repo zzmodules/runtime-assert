@@ -1,6 +1,7 @@
 using runtime_assert::{ assert }
+using log
 
-test {
+test exit_code_134_from_abort_signal {
   stdin = ""
   stdout = ""
   exit = 134

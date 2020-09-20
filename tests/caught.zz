@@ -1,7 +1,7 @@
 using abort_signal::{ set_abort_callback }
 using runtime_assert::{ assert }
 
-test {
+test catch_abort_signal_and_exit_with_number_of_failures {
   stdin = ""
   stdout = ""
   exit = 4
