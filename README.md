@@ -12,7 +12,7 @@ Add this to your `zz.toml` file:
 runtime_assert = "*"
 
 [repos]
-runtime_assert = "git://github.com/zzmodules/runtime-assert"
+runtime_assert = "git+ssh://github.com/zzmodules/runtime-assert.git"
 ```
 
 ## Usage
